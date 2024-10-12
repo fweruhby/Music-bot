@@ -3,12 +3,12 @@ const { Translate } = require('../process_tools');
 const maxVol = client.config.opt.maxVol;
 
 module.exports = async ({ inter, queue }) => {
-    if (!queue?.isPlaying()) return inter.editReply({ content: await Translate(`No music currently playing... try again ? <❌>`) });
+    if (!queue?.isPlaying()) return inter.editReply({ content: await Translate(`Nessuna musica attualmente in riproduzione... riprovare? <❌>`) });
 
     const vol = Math.floor(queue.node.volume - 5);
-    if (vol < 0) return inter.editReply({ content: await Translate(`I can not move the volume down any more <${inter.member}>... try again ? <❌>`) });
-    if (queue.node.volume === vol) return inter.editReply({ content: await Translate(`The volume you want to change is already the current one <${inter.member}>... try again ? <❌>`) });
+    if (vol < 0) return inter.editReply({ content: await Translate(`La musica e al massimo bassa <${inter.member}> <❌>`) });
+    if (queue.node.volume === vol) return inter.editReply({ content: await Translate(`Il volume che desideri modificare è già quello attuale <${inter.member}> <❌>`) });
 
     const success = queue.node.setVolume(vol);
-    return inter.editReply({ content: success ? await Translate(`The volume has been modified to <${vol}/${maxVol}% 🔊>`) : await Translate(`Something went wrong <${inter.member}>... try again ? <❌>`) });
+    return inter.editReply({ content: success ? await Translate(`Il vulume è <${vol}/${maxVol}% 🔊>`) : await Translate(`Qualcosa e andato storto <${inter.member}> <❌>`) });
 }
