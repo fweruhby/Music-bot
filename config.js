@@ -1,6 +1,6 @@
 module.exports = {
     app: {
-        token: process.env.DISCORD_TOKEN || 'TOKEN',
+        token: process.env.DISCORD_TOKEN || 'MTI5NDY3MDU3NzE3NjY3NDM4NA.G1O9SX.ZO2Bo5iB-URqQ_tZpwnCge2e5qvE-JG50AdkUs',
         playing: 'by the Community ❤️',
         global: true,
         guild: process.env.GUILD_ID || '1289604454047416404',
