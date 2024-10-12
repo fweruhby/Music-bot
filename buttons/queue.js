@@ -2,8 +2,8 @@ const { EmbedBuilder } = require('discord.js');
 const { Translate } = require('../process_tools');
 
 module.exports = async ({ client, inter, queue }) => {
-    if (!queue?.isPlaying()) return inter.editReply({ content: await Translate(`No music currently playing... try again ? <❌>`) });
-    if (!queue.tracks.toArray()[0]) return inter.editReply({ content: await Translate(`No music in the queue after the current one <${inter.member}>... try again ? <❌>`) });
+    if (!queue?.isPlaying()) return inter.editReply({ content: await Translate(`Nessuna musica attualmente in riproduzione... riprovare? <❌>`) });
+    if (!queue.tracks.toArray()[0]) return inter.editReply({ content: await Translate(`Nessuna musica in coda dopo quella corrente <${inter.member}> <❌>`) });
 
     const methods = ['', '🔁', '🔂'];
     const songs = queue.tracks.length;
@@ -16,7 +16,7 @@ module.exports = async ({ client, inter, queue }) => {
         .setAuthor({ name: await Translate(`Server queue - <${inter.guild.name} ${methods[queue.repeatMode]}>`), iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true }) })
         .setDescription(`Current ${queue.currentTrack.title}\n\n${tracks.slice(0, 5).join('\n')}\n\n${nextSongs}`)
         .setTimestamp()
-        .setFooter({ text: await Translate('Music comes first - Made with heart by the Community <❤️>'), iconURL: inter.member.avatarURL({ dynamic: true }) });
+        .setFooter({ text: await Translate('La musica viene prima di tutto - Realizzata con cuore dalla Community <❤️>'), iconURL: inter.member.avatarURL({ dynamic: true }) });
 
     inter.editReply({ embeds: [embed] });
 }
