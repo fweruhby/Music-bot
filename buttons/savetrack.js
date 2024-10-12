@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 const { Translate } = require('../process_tools');
 
 module.exports = async ({ inter, queue }) => {
-    if (!queue?.isPlaying()) return inter.editReply({ content: await Translate(`No music currently playing... try again ? <❌>`) });
+    if (!queue?.isPlaying()) return inter.editReply({ content: await Translate(`Nessuna musica attualmente in riproduzione... riprovare?<❌>`) });
 
     const embed = new EmbedBuilder()
         .setColor('Red')
@@ -19,9 +19,9 @@ module.exports = async ({ inter, queue }) => {
 
     inter.member.send({ embeds: [embed] })
         .then(async () => {
-            return inter.editReply({ content: await Translate(`I have sent you the title of the music by private messages <✅>`) });
+            return inter.editReply({ content: await Translate(`Ti ho inviato il titolo della musica tramite messaggio privato <✅>`) });
         }).catch(async (error) => {
             console.error(error);
-            return inter.editReply({ content: await Translate(`Unable to send you a private message... try again ? <❌>`) });
+            return inter.editReply({ content: await Translate(`Impossibile inviarti un messaggio privato... riprovare? <❌>`) });
         });
 }
